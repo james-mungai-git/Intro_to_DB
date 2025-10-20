@@ -1,45 +1,45 @@
--- CREATE DATABASE
+-- create database
 CREATE DATABASE IF NOT EXISTS alx_book_storeDB;
-USE ALX_BOOK_STOREDB;
+USE alx_book_storeDB;
 
--- CREATE AUTHORS TABLE
-CREATE TABLE Authors (
-    AUTHOR_ID INT PRIMARY KEY AUTO_INCREMENT,
-    AUTHOR_NAME VARCHAR(215)
+-- create authors table
+CREATE TABLE authors (
+    author_id INT PRIMARY KEY AUTO_INCREMENT,
+    author_name VARCHAR(215)
 ) ENGINE=INNODB;
 
--- CREATE BOOKS TABLE
-CREATE TABLE Books (
-    BOOK_ID INT PRIMARY KEY AUTO_INCREMENT,
-    TITLE VARCHAR(130),
-    AUTHOR_ID INT,
-    PRICE DOUBLE,
-    PUBLICATION_DATE DATE,
-    FOREIGN KEY (AUTHOR_ID) REFERENCES AUTHORS(AUTHOR_ID)
+-- create books table
+CREATE TABLE books (
+    book_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(130),
+    author_id INT,
+    price DOUBLE,
+    publication_date DATE,
+    FOREIGN KEY (author_id) REFERENCES authors(author_id)
 ) ENGINE=INNODB;
 
--- CREATE CUSTOMERS TABLE
-CREATE TABLE Customers (
-    CUSTOMER_ID INT PRIMARY KEY AUTO_INCREMENT,
-    CUSTOMER_NAME VARCHAR(215),
-    EMAIL VARCHAR(215),
-    ADDRESS TEXT
+-- create customers table
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_name VARCHAR(215),
+    email VARCHAR(215),
+    address TEXT
 ) ENGINE=INNODB;
 
--- CREATE ORDERS TABLE
-CREATE TABLE Orders (
-    ORDER_ID INT PRIMARY KEY AUTO_INCREMENT,
-    CUSTOMER_ID INT,
-    ORDER_DATE DATE,
-    FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID)
+-- create orders table
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 ) ENGINE=INNODB;
 
--- CREATE ORDER_DETAILS TABLE
-CREATE TABLE Order_details (
-    ORDERDETAILID INT PRIMARY KEY AUTO_INCREMENT,
-    ORDER_ID INT,
-    BOOK_ID INT,
-    QUANTITY DOUBLE,
-    FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ORDER_ID),
-    FOREIGN KEY (BOOK_ID) REFERENCES BOOKS(BOOK_ID)
+-- create order_details table
+CREATE TABLE order_details (
+    orderdetailid INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT,
+    book_id INT,
+    quantity DOUBLE,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
 ) ENGINE=INNODB;
